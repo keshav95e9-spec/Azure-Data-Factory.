@@ -1,0 +1,95 @@
+{
+	"name": "006ConditionalSplitTransformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ordercsv1",
+						"type": "DatasetReference"
+					},
+					"name": "readcsvfile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "COnditionalIndia",
+						"type": "DatasetReference"
+					},
+					"name": "SplitIndia"
+				},
+				{
+					"dataset": {
+						"referenceName": "ConditionalFrnace",
+						"type": "DatasetReference"
+					},
+					"name": "FranceSplit"
+				},
+				{
+					"dataset": {
+						"referenceName": "ConditonalOther",
+						"type": "DatasetReference"
+					},
+					"name": "OtherSplit"
+				}
+			],
+			"transformations": [
+				{
+					"name": "conditionalSplitTransformation"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          OrderDate as date 'yyyy-MM-dd',",
+				"          ProductKey as short,",
+				"          Country as string,",
+				"          EnglishProductName as string,",
+				"          SalesAmount as double,",
+				"          UnitPrice as double,",
+				"          OrderQuantity as boolean,",
+				"          TaxAmt as double,",
+				"          TotalProductCost as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('hash', 1)) ~> readcsvfile",
+				"readcsvfile split(Country=='India',",
+				"     Country=='France',",
+				"     disjoint: false) ~> conditionalSplitTransformation@(India, France, Other)",
+				"conditionalSplitTransformation@India sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> SplitIndia",
+				"conditionalSplitTransformation@France sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> FranceSplit",
+				"conditionalSplitTransformation@Other sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> OtherSplit"
+			]
+		}
+	}
+}
