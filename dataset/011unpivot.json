@@ -1,0 +1,57 @@
+{
+	"name": "011unpivot",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EnglishProductName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Australia",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Canada",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "France",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Germany",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "India",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Italy",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "United States",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl010Pivot"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

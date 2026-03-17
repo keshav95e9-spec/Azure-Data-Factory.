@@ -1,0 +1,17 @@
+{
+	"name": "014looku",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl014lookup"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

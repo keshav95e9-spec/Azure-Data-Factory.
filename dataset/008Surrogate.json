@@ -1,0 +1,17 @@
+{
+	"name": "008Surrogate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblSurrogate"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

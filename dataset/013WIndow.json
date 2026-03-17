@@ -1,0 +1,17 @@
+{
+	"name": "013WIndow",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl013Window"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

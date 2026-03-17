@@ -1,0 +1,17 @@
+{
+	"name": "016Exists",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl016Exixts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

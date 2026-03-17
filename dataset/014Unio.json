@@ -1,0 +1,17 @@
+{
+	"name": "014Unio",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl014Union"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

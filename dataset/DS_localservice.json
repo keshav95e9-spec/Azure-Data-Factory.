@@ -1,0 +1,28 @@
+{
+	"name": "DS_localservice",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Paramtable": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@split(dataset().Paramtable,'.' )[0]",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@split(dataset().Paramtable,'.' )[1]",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

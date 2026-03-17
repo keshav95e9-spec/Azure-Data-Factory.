@@ -1,0 +1,17 @@
+{
+	"name": "keyvault",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "keyvault",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Ordertest"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "009Aggregate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl009aggregate"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
