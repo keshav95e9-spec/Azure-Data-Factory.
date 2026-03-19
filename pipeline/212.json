@@ -1,0 +1,72 @@
+{
+	"name": "212",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "Select IsNULL(MAX(Orderdate),'2020-01-01') AS MaxDate from Stagging",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "007cast",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "load increment data adls to sqldb",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "018lecture212",
+						"type": "DataFlowReference",
+						"parameters": {
+							"param_Date": {
+								"value": "'@{formatDateTime(activity('Lookup1').output.firstRow.MaxDate,'yyyy-MM-dd')}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-02-07T06:23:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

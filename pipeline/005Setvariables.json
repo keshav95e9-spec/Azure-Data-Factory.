@@ -1,0 +1,77 @@
+{
+	"name": "005Setvariables",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "x",
+					"value": "INDIA"
+				}
+			},
+			{
+				"name": "Set variable2",
+				"description": "",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "y",
+					"value": 500
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "y",
+					"value": 800
+				}
+			}
+		],
+		"variables": {
+			"x": {
+				"type": "String",
+				"defaultValue": "INDIA"
+			},
+			"y": {
+				"type": "Integer",
+				"defaultValue": 500
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-01-19T16:09:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
